@@ -6,6 +6,7 @@ import csv
 import json
 import user_create
 import time
+import main
 from pathlib import Path
 
 
@@ -19,7 +20,7 @@ def process_data(dataset):
     for userdata in dataset[1:]:
         #time.sleep(1)
         total_count +=1
-        user_profile = convert_json_userprofile(header,userdata)
+        user_profile = convert_userprofile_tojson(header,userdata)
         #print(user_profile)
         #token = user_create.get_access_token()
         response = user_create.create_user(user_profile,token)
@@ -45,7 +46,7 @@ def process_data(dataset):
   
 
 
-def convert_json_userprofile(headerline,data):
+def convert_userprofile_tojson(headerline,data):
     datamap = {}
     col=0
     #print(headerline)
@@ -55,6 +56,8 @@ def convert_json_userprofile(headerline,data):
             datamap[key] = data[col]
             col +=1
     datamap["enabled"] = "true"
+    if main.SET_UPDATE_PASSWORD_ACTION == "true":
+        datamap["requiredActions"]= [ "UPDATE_PASSWORD" ]
     #datamap["email"] = datamap["User"]
     #print(jsonpayload)
     str1=json.dumps(datamap,indent=4)

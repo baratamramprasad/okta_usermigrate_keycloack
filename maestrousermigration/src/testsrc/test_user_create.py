@@ -19,7 +19,7 @@ user_data1={
     "enabled": "true", 
     "email": "1111q@gmail.com"
     }
-user_data2='{"username": "ramprasad.baratam@newfold.com", "firstName": "Chiranjit", "lastName": "Dutta", "email": "ramprasad.baratam@newfold.com", "enabled": "true"}'
+user_data2='{"username": "ram.baraatam@newfold.com", "firstName": "e", "lastName": "e", "email": "ram.baratasm@newfold.com", "enabled": "true","requiredActions": ["UPDATE_PASSWORD"]}'
 response = user_create.create_user(user_data2,user_create.get_access_token())
 
 #print(response.text)
